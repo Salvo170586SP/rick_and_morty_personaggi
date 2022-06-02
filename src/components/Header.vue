@@ -17,7 +17,7 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mb-lg-0">
             <li>
-              <button class="btn btn-sm bg-warning fw-bold d-flex align-items-center" @click="$emit('clicktext')"><i class="fa-solid fa-radiation fa-2x me-2"></i> {{ testoBottone }}</button>
+              <button class="btn alarm btn-sm  fw-bold d-flex align-items-center" @click="$emit('clicktext')"><i class="fa-solid fa-radiation fa-2x me-2"></i> {{ testoBottone }}</button>
             </li>
            
           </ul>
@@ -41,6 +41,20 @@ header{
   .collapse{
     justify-content: center;
     margin-right: 100px ;
+  }
+
+  .alarm{
+    text-shadow: 0 0 100px;
+    animation: animate 2s infinite linear;
+
+    @keyframes animate {
+
+      0%,
+      100% {background: red;
+      };
+      50% {background: yellow;
+        box-shadow: 0 0 25px 10px yellow;}
+    }
   }
 }
 </style>
