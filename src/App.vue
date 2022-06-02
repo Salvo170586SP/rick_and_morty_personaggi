@@ -1,28 +1,63 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @clicktext="clicktext" :testoBottone="testoBottone" />
+    <main class="text-center">
+      <div v-if="nascondi && personaggi.length">
+        <Personaggi :personaggi="personaggi" />
+      </div>
+      <h1 v-else>Clicca a tu rischio e pericolo sul bottone in alto</h1>
+    </main>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
 
+<script>
+import axios from "axios";
+import Header from "./components/Header.vue";
+import Personaggi from "./components/Personaggi.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Header,
+    Personaggi,
+  },
+  data() {
+    return {
+      p: "",
+      personaggi: [],
+      testoBottone: "SCOPRI I PERSONAGGI",
+      nascondi: false,
+    };
+  },
+  methods: {
+    getCharacters() {
+      axios.get("https://rickandmortyapi.com/api/character/").then((res) => {
+        this.personaggi = res.data.results;
+      });
+    },
+    clicktext() {
+      if (this.nascondi == false) {
+        this.nascondi = true;
+        this.testoBottone = "INVASIONE ALIENA!";
+      } else if (this.nascondi == true) {
+        this.nascondi = false;
+        this.testoBottone = "SCOPRI I PERSONAGGI";
+      }
+    },
+  },
+  mounted() {
+    this.getCharacters();
+  },
+};
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "./assets/sass/App.scss";
+body{
+  background: red;
 }
+main{
+padding: 100px 0 ;
+}
+
 </style>
