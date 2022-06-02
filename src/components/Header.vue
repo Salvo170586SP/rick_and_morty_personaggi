@@ -14,7 +14,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex justify-content-center me" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
           <ul class="navbar-nav mb-lg-0">
             <li>
               <button class="btn btn-sm bg-warning fw-bold d-flex align-items-center" @click="$emit('clicktext')"><i class="fa-solid fa-radiation fa-2x me-2"></i> {{ testoBottone }}</button>
@@ -38,8 +38,9 @@ export default {
 <style scoped lang="scss">
 header{
   z-index: 1;
-  .me{
-    margin-right: 180px;
+  .collapse{
+    justify-content: center;
+    margin-right: 100px ;
   }
 }
 </style>
